@@ -1,0 +1,100 @@
+Important content for this website goes here.
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<fieldset>
+		<legend>Login Credentials</legend>
+		<form method="post" action="/Online_LMS/Login">
+			Login Type : 
+			<select name="userType"><option>--Login Type--</option><option>User</option><option>Admin</option></select>
+			<br><br>
+			Username : <input type="text" name="username" /> <br><br>
+			Password : <input type="password" name="password" /> <br><br>
+			<input type="submit" value="Login" />
+		</form>
+	</fieldset>
+</body>
+</html>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Serial</h4>
+      </div>
+      <div class="modal-body">
+      	Fill in username and password properly..
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+	
+	private void setUpBlog() {
+		String query = "CREATE TABLE blog ("
+				+ "id VARCHAR2(100) NOT NULL CONSTRAINT pk_book_id PRIMARY KEY," 
+				+ "name VARCHAR2(255) NOT NULL," 
+				+ "author VARCHAR2(255) NOT NULL," 
+				+ "publisher VARCHAR2(255) NOT NULL"
+				+ ")";
+		final String[] TABLE_NAME = {"book"};
+		try {
+			DatabaseMetaData metaData = connection.getMetaData();
+			ResultSet rs = metaData.getTables(null, null, null, TABLE_NAME);
+			if(rs.next()){
+				System.out.println("Database already created and ready to use.");
+			} else {
+				statement = connection.createStatement();
+				statement.executeUpdate(query);
+				System.out.println(query);
+				System.out.println("Database Created.");
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		}
+	}
+	
+	private void setUpMarketing() {
+		String query = "CREATE TABLE member ("
+				+ "id VARCHAR2(100) NOT NULL CONSTRAINT pk_member_id PRIMARY KEY," 
+				+ "name VARCHAR2(255) NOT NULL," 
+				+ "mobile VARCHAR2(255) NOT NULL," 
+				+ "email VARCHAR2(255) NOT NULL"
+				+ ")";
+		final String[] TABLE_NAME = {"member"};
+		try {
+			DatabaseMetaData metaData = connection.getMetaData();
+			ResultSet rs = metaData.getTables(null, null, null, TABLE_NAME);
+			if(rs.next()){
+				System.out.println("Database already created and ready to use.");
+			} else {
+				statement = connection.createStatement();
+				statement.executeUpdate(query);
+				System.out.println(query);
+				System.out.println("Database Created.");
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		}
+	}
